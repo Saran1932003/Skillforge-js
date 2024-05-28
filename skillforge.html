@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./skillforge.css"> <!-- Added rel attribute -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-eHh/HgnTD9SrqPG3hYK26so0H+zJ3v3tjq3TtJVSz26dAWZGI6q8vAImA6zp2cnJlbzqRg24zhWQT4oFBimVndA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">SkillForge</a>
+    <div class="ml-auto">
+        
+        <button type="button" onclick="window.location.href='./index.html'" class="btn btn-primary mr-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+              </svg>
+            <i class="fas fa-user-circle"></i> Home
+            
+        </button>
+    </div>
+</nav>
+
+<div class="container">
+    <form id="chatForm">
+        <div class="form-group">
+            <label for="inputContent">Enter Job or Skill :</label>
+            <input type="text" class="form-control" id="inputContent" placeholder="Enter job or skill">
+        </div>
+        <div class="form-group">
+            <label for="selectType">Select Job or Skill for Recommendations :</label>
+            <select class="form-control" id="selectType">
+                <option value="job">Job</option>
+                <option value="skill">Skill</option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="submitChat()">
+            <span class="loading-spinner" id="loadingSpinner">&#8635;</span> Submit
+        </button>
+    </form>
+
+    <div id="chatResponse"  class="border p-3" placeholder="Wait for the Recommendations...."></div>
+</div>
+
+<footer>
+    <p>&copy; 2024 SkillForge</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    function submitChat() {
+        const content = document.getElementById('inputContent').value;
+        const type = document.getElementById('selectType').value;
+        const submitButton = document.querySelector('#chatForm button');
+        const loadingSpinner = document.querySelector('#loadingSpinner');
+
+        loadingSpinner.style.display = 'inline-block';
+        submitButton.disabled = true;
+
+        let apiContent;
+        if (type === 'job') {
+            apiContent = `Jobs related to skill: ${content}`;
+        } else if (type === 'skill') {
+            apiContent = `Skills needed for job: ${content}`;
+        } else {
+            alert('Please enter a valid input and select the appropriate type.');
+            loadingSpinner.style.display = 'none';
+            submitButton.disabled = false;
+            return;
+        }
+
+        axios.post('http://localhost:10001/chat', {
+            content: apiContent
+        })
+        .then(function (response) {
+            const messages = response.data.messages.split('\n');
+            const chatResponse = document.getElementById('chatResponse');
+            chatResponse.innerHTML = ''; // Clear previous messages
+
+            messages.forEach(message => {
+                const messageElement = document.createElement('p');
+                messageElement.innerText = message;
+                chatResponse.appendChild(messageElement);
+            });
+
+            loadingSpinner.style.display = 'none';
+            submitButton.disabled = false;
+        })
+        .catch(function (error) {
+            console.error(error);
+            loadingSpinner.style.display = 'none';
+            submitButton.disabled = false;
+        });
+    }
+</script>
+<!-- <div class="visme_d" data-title="Contact Form" data-url="epr4j94r-contact-form?fullPage=true" data-domain="forms" data-full-page="true" data-min-height="100vh" data-form-id="39989"></div><script src="https://static-bundles.visme.co/forms/vismeforms-embed.js"></script> -->
+
+</body>
+</html>

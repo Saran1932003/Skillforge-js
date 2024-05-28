@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="google-site-verification" content="key" />
+
+    <title>SkillForge</title>
+    <meta
+      name="description"
+      content="Your AI companion for skill and job recommendation."
+    />
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <script src="https://gamerseo.com/js/app.js" defer></script>
+
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link href="https://gamerseo.com/css/fontello.css" rel="stylesheet" />
+    <link href="landingpage.css" rel="stylesheet" />
+    <link href="https://gamerseo.com/css/services.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=explicit"
+      async
+      defer
+    ></script>
+  </head>
+  <body>
+    <div id="bg"></div>
+    <main id="app">
+      <section id="home" class="header home">
+        <div id="nav-container" class="home">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex d-lg-none mobile-nav text-center">
+                  <ul>
+                    <li @click="toggleMenu">
+                      <a
+                        class="nav-item ) scrollactive-item"
+                        href="#home"
+                        v-smooth-scroll="{duration: 1000, offset: -90}"
+                      >
+                        Home
+                      </a>
+                    </li>
+                    <li @click="toggleMenu">
+                      <a
+                        class="nav-item ) scrollactive-item"
+                        href="#about-us"
+                        v-smooth-scroll="{duration: 1000, offset: -90}"
+                      >
+                        About us
+                      </a>
+                    </li>
+                    <li @click="toggleMenu">
+                      <a
+                        class="nav-item ) scrollactive-item"
+                        href="#services"
+                        v-smooth-scroll="{duration: 1000, offset: -90}"
+                      >
+                        Services
+                      </a>
+                    </li>
+
+                    <li @click="toggleMenu">
+                      <a
+                        class="nav-item ) scrollactive-item"
+                        href="#contact"
+                        v-smooth-scroll="{duration: 1000, offset: -90}"
+                      >
+                        Contact
+                      </a>
+                    </li>
+                    <li @click="toggleMenu">
+                      <a
+                        class="nav-item"
+                        href="https://untoldcoding.blogspot.com/"
+                      >
+                        Blog
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <nav class="nav d-flex justify-content-between">
+                  <div class="d-flex left-side align-items-center">
+                    <div class="burger d-lg-none">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                    <div class="logo">
+                      <a href="/"> SkillForge </a>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <ul class="d-none d-lg-flex nav-links home">
+                      <li>
+                        <a
+                          class="nav-item scrollactive-item"
+                          href="#home"
+                          v-smooth-scroll="{duration: 1000, offset: -90}"
+                        >
+                          Home
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          class="nav-item scrollactive-item"
+                          href="#services"
+                          v-smooth-scroll="{duration: 1000, offset: -90}"
+                        >
+                          Services
+                        </a>
+                      </li>
+
+                     
+                    </ul>
+                    <ul class="d-flex align-items-center">
+                      <li>
+                        <button class="btn btn-sm btn-login"><a  onclick="window.location.href='./siginpage.html'"
+                        class="link-danger">SignIn</a></button>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="hero">
+        <div class="section-wrapper">
+          <div class="section-header">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 wrapper">
+                  <h2 class="hero-title">
+                    <strong style="color: #31cd9d">#1</strong> Job and Skill Recommender  </h2>
+                  <p class="hero-text">
+                    Your AI companion for Skill and Job Recommendations
+                  </p>
+                  
+                  <a href="#services" class="btn btn-white nav-item scrollactive-item">
+                    Get started ->
+               
+                </a>
+                
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="services">
+        <div class="section-wrapper">
+          <div class="section-header">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 wrapper">
+                  <h2>Services We Can Help With</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container my-5">
+            <div class="row">
+              <div class="col-md-4 service">
+                <div class="mb-3">
+                  <img
+                    class="img-fluid"
+                    src="https://i.postimg.cc/PJPcHg32/plus-1.png"
+                    alt="seo audit"
+                  />
+                </div>
+                <div class="description">
+                  <div class="article-header mb-3">
+                    <h3 class="text-normal">
+
+                      <a class="title" href="http://localhost:8501"> Resume Matcher </a>
+                    </h3>
+                  </div>
+                  <div class="article-description mb-4">
+                    <div>
+                      <p>
+                        A Resume Matcher automates resume screening by analyzing candidate resumes against job descriptions, identifying key skills and qualifications. This streamlines the hiring process, saving time and assisting recruiters in quickly pinpointing suitable candidates based on job criteria..
+                      </p>
+                    </div>
+                  </div>
+                  <div class="read-more">
+                    <a href="#seo-audit" style="color: #56edc3 !important">
+                      Read more
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="css-i6dzq1"
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="col-md-4 service">
+                <div class="mb-3">
+                  <img
+                    class="img-fluid"
+                    src="https://i.postimg.cc/76QsKBH7/computer.png"
+                    alt="seo strategies"
+                  />
+                </div>
+                <div class="description">
+                  <div class="article-header mb-3">
+                    <h3 class="text-normal">
+                      <a class="title" href="http://127.0.0.1:8000/">
+                        Skill and Job Recommender
+                      </a>
+                    </h3>
+                  </div>
+                  <div class="article-description mb-4">
+                    <div>
+                      <p>
+                        A Skill and Job Recommender is a tool that offers personalized career guidance by analyzing user skills and preferences, providing tailored job recommendations. It streamlines the job search process, aiding individuals in finding positions that closely match their abilities and career goals.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="read-more">
+                    <a href="./skillforge.html" style="color: #69f0f7 !important">
+                        Read more
+                        <svg
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="css-i6dzq1"
+                        >
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                
+                </div>
+              </div>
+              <div class="col-md-4 service">
+                <div class="mb-3">
+                  <img
+                    class="img-fluid"
+                    src="https://i.postimg.cc/6qX0jDs8/pc.png"
+                    alt="high quality articles"
+                  />
+                </div>
+                <div class="description">
+                  <div class="article-header mb-3">
+                    <h3 class="text-normal">
+                      <a class="title" href="./skillandjob.html">
+                        Crafting Career Success
+                      </a>
+                    </h3>
+                  </div>
+                  <div class="article-description mb-4">
+                    <div>
+                      <p>
+                        Forge empowers individuals to tailor their skills for optimal career alignment, ensuring a personalized and effective job search experience. By refining skillsets based on desired job criteria, Forge facilitates targeted professional growth and enhances career prospects.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="read-more">
+                    <a
+                      href="#high-quality-articles"
+                      style="color: #eac240 !important"
+                    >
+                      Read more
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="css-i6dzq1"
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+             
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+    <script src="https://github.com/mrdoob/three.js/blob/master/src/constants.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+      (function () {
+        let images = document.querySelectorAll(".service-content img");
+        let service_box = document.querySelector(".service-content");
+        for (const image of images) {
+          if (image.complete) {
+            continue;
+          }
+          image.style.opacity = 0;
+          const offsetTop = image.offsetTop;
+          const offsetLeft = image.offsetLeft;
+          const div = document.createElement("div");
+          div.classList.add("placeholder");
+          div.dataset.src = image.src;
+          const height = image.clientHeight;
+          const width = image.clientWidth;
+          div.style.left = offsetLeft + "px";
+          div.style.top = offsetTop + "px";
+          div.style.position = "absolute";
+          div.style.width = width + "px";
+          const newWidth =
+            service_box.clientWidth > width ? width : service_box.clientWidth;
+          const newHeight = (height / width) * newWidth;
+          div.style.height = newHeight + "px";
+          service_box.appendChild(div);
+          image.addEventListener("load", (e) => {
+            const images = document.querySelectorAll(
+              `.service-content img[src='${e.target.src}']`
+            );
+            images.forEach((item) => {
+              item.style.opacity = 1;
+            });
+            const placeholders = document.querySelectorAll(
+              `div[data-src='${e.target.src}']`
+            );
+            placeholders.forEach((item) => {
+              item.classList.add("placeholder--hidden");
+            });
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

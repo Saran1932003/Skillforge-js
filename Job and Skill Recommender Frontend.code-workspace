@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "Job and Skill Recommender Frontend",
+			"path": "."
+		},
+		{
+			"name": "job apply",
+			"path": "../job apply"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501,
+		"liveServer.settings.multiRootWorkspaceName": "Job and Skill Recommender Frontend"
+	}
+}

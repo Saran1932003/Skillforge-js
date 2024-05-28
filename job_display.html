@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <title>Job Display Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('./images/1164874.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Set the height to fill the viewport */
+            color: #fff; /* Set text color to white for better contrast */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #jobContainers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .job-container {
+            position: relative;
+            width: 700px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .job-container:hover {
+            transform: scale(1.05);
+        }
+
+        .action-buttons {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        button {
+            margin: 5px;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button.apply {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        button.not-interested {
+            background-color: #FF5733;
+            color: #fff;
+        }
+
+        h2, p {
+            color: #333;
+        }
+
+        .details {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        
+        #noJobsMessage {
+            display: none;
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 50px;
+            animation: fadeIn 1.5s forwards;
+            background-color: rgb(14, 14, 14);
+            
+            
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">SkillForge</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <section id="jobContainers"></section>
+
+    <div id="noJobsMessage">No jobs for recommendation</div>
+
+    <script>
+        // Retrieve job data from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const jobTitle = urlParams.get('title');
+        const jobDescription = urlParams.get('description');
+        const jobSalary = urlParams.get('salary');
+        const jobLocation = urlParams.get('location');
+        const companyName = urlParams.get('companyName');
+        const applicationLink = urlParams.get('applicationLink');
+    
+        // Retrieve existing job data from localStorage
+        let jobData = JSON.parse(localStorage.getItem('jobData')) || [];
+    
+        // Check if the new job already exists in the data
+        const isNewJob = jobTitle && jobDescription && !jobData.some(job => job.title === jobTitle && job.description === jobDescription);
+    
+        // Add the new job to the array if it's not already present
+        if (isNewJob) {
+            jobData.push({
+                title: jobTitle,
+                description: jobDescription,
+                salary: jobSalary,
+                location: jobLocation,
+                companyName: companyName,
+                applicationLink: applicationLink
+            });
+    
+            // Save updated job data to localStorage
+            localStorage.setItem('jobData', JSON.stringify(jobData));
+        }
+    
+        // Display all job containers or show no jobs message
+        const jobContainersElement = document.getElementById('jobContainers');
+        const noJobsMessage = document.getElementById('noJobsMessage');
+
+        if (jobData.length > 0) {
+            jobData.forEach((job, index) => {
+                const newJobContainer = document.createElement('div');
+                newJobContainer.className = 'job-container';
+                newJobContainer.innerHTML = `
+                    <h2>${job.title}</h2>
+                    <p>${job.description}</p>
+                    <div class="details">
+                        <strong>Salary:</strong> ${job.salary}<br>
+                        <strong>Location:</strong> ${job.location}<br>
+                        <strong>Company:</strong> ${job.companyName}<br>
+                    </div>
+                `;
+    
+                const actionButtons = document.createElement('div');
+                actionButtons.className = 'action-buttons';
+    
+                const applyButton = document.createElement('button');
+                applyButton.className = 'apply';
+                applyButton.textContent = 'Apply Now';
+    
+                const notInterestedButton = document.createElement('button');
+                notInterestedButton.className = 'not-interested';
+                notInterestedButton.textContent = 'Not Interested';
+    
+                applyButton.addEventListener('click', () => {
+                    // Redirect to the application link
+                    window.open(job.applicationLink, '_blank');
+                });
+    
+                notInterestedButton.addEventListener('click', () => {
+                    // Remove the container
+                    jobContainersElement.removeChild(newJobContainer);
+    
+                    // Remove the job from the data array
+                    jobData.splice(index, 1);
+    
+                    // Save updated job data to localStorage
+                    localStorage.setItem('jobData', JSON.stringify(jobData));
+                });
+    
+                actionButtons.appendChild(applyButton);
+                actionButtons.appendChild(notInterestedButton);
+                newJobContainer.appendChild(actionButtons);
+    
+                jobContainersElement.appendChild(newJobContainer);
+            });
+        } else {
+            noJobsMessage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
